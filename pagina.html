@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Conversor de Bases</title>
+
+  <link rel="stylesheet" href="estilo.css">
+
+
+<!--En la linea 11, el html consulta y obtiene una hoja de estilos ya creada por Bootstrap y la hace disponible para todo el codigo, para otorgar diseños rapidos, como al boton por ejemplo.-->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+</head>
+
+<body>
+
+
+  <header> <!--Se crea una cabecera que contiene el titulo de la pagina web o programa.-->
+    <h1 id = "titulo" class="form_tit">Conversor de Bases Numericas</h1>
+  </header>
+
+  <!-- Se crea el formulario, que sera el padre de todo los campos y elementos, esto permite homogeneidad entre los elementos y se mantenga un orden estable y universal dentro del formulario.-->
+  <form class="formulario" action="javascript: void(0)" method="post" onsubmit="calcular()"><br>
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-text-right" viewBox="0 0 16 16">
+      <path fill-rule="evenodd" d="M6 12.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm-4-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm4-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm-4-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z" />
+    </svg>
+
+    <!--Se crea el unico campo que no contiene la propiedad readonly, asi el usuario puede interactuar e ingresar un numero.-->
+    <label for="numIngresado">Numero:</label><br>
+    <input id = "numIngresado" type="text" class="form-control"><br>
+
+    <!--Se crean los botones de tipo radio, que permiten crear opciones donde solo 1 pueda estar seleccionada del total.-->
+    <input type="radio" id="rBinario" name="radioSystem" class="form-check-input">
+    <label for="radioSystem" class="form-check-label">Binario</label>
+
+    <input type="radio" id="rOctal" name="radioSystem" class="form-check-input">
+    <label for="radioSystem" class="form-check-label">Octal</label>
+
+    <input type="radio" id="rDecimal" name="radioSystem" class="form-check-input">
+    <label for="radioSystem" class="form-check-label">Decimal</label>
+
+    <input type="radio" id="rHexadecimal" name="radioSystem" class="form-check-input">
+    <label for="radioSystem" class="form-check-label">Hexadecimal</label>
+
+    <br><br>
+
+
+    <!--El campo <svg> es donde se inserta el icono que Bootstrap ofrece y despues se crean los campos con la propiedad readonly para que el usuario no los pueda editar, y se les otorga una id distintiva para poder escribir en ellos desde Javascript de manera ordenada.-->
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-binary" viewBox="0 0 16 16">
+      <path d="M5.526 13.09c.976 0 1.524-.79 1.524-2.205 0-1.412-.548-2.203-1.524-2.203-.978 0-1.526.79-1.526 2.203 0 1.415.548 2.206 1.526 2.206zm-.832-2.205c0-1.05.29-1.612.832-1.612.358 0 .607.247.733.721L4.7 11.137a6.749 6.749 0 0 1-.006-.252zm.832 1.614c-.36 0-.606-.246-.732-.718l1.556-1.145c.003.079.005.164.005.249 0 1.052-.29 1.614-.829 1.614zm5.329.501v-.595H9.73V8.772h-.69l-1.19.786v.688L8.986 9.5h.05v2.906h-1.18V13h3z" />
+      <path d="M4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4zm0 1h8a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z" />
+    </svg>
+    <label for="iBinario">Binario:</label>
+    <input type="text" class="form-control" id="iBinario" readonly> <br>
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-octagon" viewBox="0 0 16 16">
+      <path d="M4.54.146A.5.5 0 0 1 4.893 0h6.214a.5.5 0 0 1 .353.146l4.394 4.394a.5.5 0 0 1 .146.353v6.214a.5.5 0 0 1-.146.353l-4.394 4.394a.5.5 0 0 1-.353.146H4.893a.5.5 0 0 1-.353-.146L.146 11.46A.5.5 0 0 1 0 11.107V4.893a.5.5 0 0 1 .146-.353L4.54.146zM5.1 1 1 5.1v5.8L5.1 15h5.8l4.1-4.1V5.1L10.9 1H5.1z" />
+    </svg>
+    <label for="iOctal">Octal:</label>
+    <input type="text" class="form-control" id="iOctal" readonly> <br>
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-sort-numeric-down" viewBox="0 0 16 16">
+      <path d="M12.438 1.668V7H11.39V2.684h-.051l-1.211.859v-.969l1.262-.906h1.046z" />
+      <path fill-rule="evenodd" d="M11.36 14.098c-1.137 0-1.708-.657-1.762-1.278h1.004c.058.223.343.45.773.45.824 0 1.164-.829 1.133-1.856h-.059c-.148.39-.57.742-1.261.742-.91 0-1.72-.613-1.72-1.758 0-1.148.848-1.835 1.973-1.835 1.09 0 2.063.636 2.063 2.687 0 1.867-.723 2.848-2.145 2.848zm.062-2.735c.504 0 .933-.336.933-.972 0-.633-.398-1.008-.94-1.008-.52 0-.927.375-.927 1 0 .64.418.98.934.98z" />
+      <path d="M4.5 2.5a.5.5 0 0 0-1 0v9.793l-1.146-1.147a.5.5 0 0 0-.708.708l2 1.999.007.007a.497.497 0 0 0 .7-.006l2-2a.5.5 0 0 0-.707-.708L4.5 12.293V2.5z" />
+    </svg>
+    <label for="iDecimal">Decimal:</label>
+    <input type="text" class="form-control" id="iDecimal" readonly> <br>
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cpu" viewBox="0 0 16 16">
+      <path d="M5 0a.5.5 0 0 1 .5.5V2h1V.5a.5.5 0 0 1 1 0V2h1V.5a.5.5 0 0 1 1 0V2h1V.5a.5.5 0 0 1 1 0V2A2.5 2.5 0 0 1 14 4.5h1.5a.5.5 0 0 1 0 1H14v1h1.5a.5.5 0 0 1 0 1H14v1h1.5a.5.5 0 0 1 0 1H14v1h1.5a.5.5 0 0 1 0 1H14a2.5 2.5 0 0 1-2.5 2.5v1.5a.5.5 0 0 1-1 0V14h-1v1.5a.5.5 0 0 1-1 0V14h-1v1.5a.5.5 0 0 1-1 0V14h-1v1.5a.5.5 0 0 1-1 0V14A2.5 2.5 0 0 1 2 11.5H.5a.5.5 0 0 1 0-1H2v-1H.5a.5.5 0 0 1 0-1H2v-1H.5a.5.5 0 0 1 0-1H2v-1H.5a.5.5 0 0 1 0-1H2A2.5 2.5 0 0 1 4.5 2V.5A.5.5 0 0 1 5 0zm-.5 3A1.5 1.5 0 0 0 3 4.5v7A1.5 1.5 0 0 0 4.5 13h7a1.5 1.5 0 0 0 1.5-1.5v-7A1.5 1.5 0 0 0 11.5 3h-7zM5 6.5A1.5 1.5 0 0 1 6.5 5h3A1.5 1.5 0 0 1 11 6.5v3A1.5 1.5 0 0 1 9.5 11h-3A1.5 1.5 0 0 1 5 9.5v-3zM6.5 6a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3z" />
+    </svg>
+    <label for="iHexadecimal">Hexadecimal:</label>
+    <input type="text" class="form-control" id="iHexadecimal" readonly> <br>
+
+    <!--Se crea un boton de tipo submit, que nos permite llamar a la funcion calcular en convertidor.js, asi convertiendo la base en las respectivas bases requeridas.-->
+    <button type="submit" id="btnCalcular" class="btn btn-primary">Calcular</button>
+
+
+  </form>
+  <script src="conversor.js"></script> <!--HTML se vincula junto con la clase de javascript.-->
+</body>
+</html>

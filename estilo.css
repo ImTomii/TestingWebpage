@@ -1,0 +1,21 @@
+/* Establece los bordes iguales para todos los elementos, borde tipo box*/
+*{
+  box-sizing: border-box;
+}
+
+.formulario{ /* Le da un diseño unico al formulario (conjunto que engloba los campos y el boton.)*/
+  width: 500px; /*Ancho*/
+  margin: auto; /*Margen que se ajusta automaticamente*/
+  max-width: 100%; /*Limite para el ancho*/
+  margin-top: 30px; /*Sangria para arriba*/
+  padding: 20px; /*Padding crea espacio entre elementos y el borde*/
+  box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.3); /*Crea sombra para el formulario y se vea mas bonito*/
+  position: relative;
+  background-color: #A9F5A9;
+}
+
+header{ /* Le otorga un diseño unico a la cabecera*/
+  text-align: center; /*Alinea el texto conversor de bases al medio de la pagina*/
+  color: rgba(0,0,0,0.87)
+  margin-bottom: 30px;
+  }
